@@ -11,6 +11,7 @@ namespace XMLWeather
 {
     public partial class ForecastScreen : UserControl
     {
+        
         public ForecastScreen()
         {
             InitializeComponent();
@@ -19,13 +20,13 @@ namespace XMLWeather
 
         public void displayForecast()
         {
-            date1.Text = Form1.days[1].date;
-            min1.Text = Form1.days[1].tempLow;
-            max1.Text = Form1.days[1].tempHigh;
 
-            date2.Text = Form1.days[2].date;
-            min2.Text = Form1.days[2].tempLow;
-            max2.Text = Form1.days[2].tempHigh;
+            for (int i = 1; i < Form1.days.Count; i++)
+            {
+                date.Text = DateTime.Now.AddDays(i).ToString("dddd") + "\n";
+                maxOutput.Text = Form1.days[i].tempHigh + "\n";
+                minOutput.Text = Form1.days[i].tempLow + "\n";
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)

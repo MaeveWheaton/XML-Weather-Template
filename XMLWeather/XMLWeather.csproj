@@ -99,6 +99,39 @@
   <ItemGroup>
     <None Include="Resources\Rain3.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Sun-lightcloud-grain.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Sun-darkcloud-heavygrain.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Sun-darkcloud-heavyrain.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Sun-littlecloud.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Sun-lightcloud.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Sun-lightcloud-sleet.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Sun.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Sun-littlecloud-flash-rain.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Sun-lightcloud-rain.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Day-lightcloud-rain.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weer-Weather-Sun-littlecloud-rain.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

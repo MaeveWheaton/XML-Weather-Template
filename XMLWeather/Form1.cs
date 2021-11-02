@@ -41,13 +41,20 @@ namespace XMLWeather
                 reader.ReadToFollowing("time");
                 day.date = reader.GetAttribute("day");
 
+                //get precipitation probability
+                reader.ReadToFollowing("precipitation");
+                day.precipitation = reader.GetAttribute("probability");
+
+                //get low and high and remove decimals
                 reader.ReadToFollowing("temperature");
-                day.tempLow = reader.GetAttribute("min");
-                day.tempHigh = reader.GetAttribute("max");
+                day.tempLow = Convert.ToDouble(reader.GetAttribute("min")).ToString("0");
+                day.tempHigh = Convert.ToDouble(reader.GetAttribute("max")).ToString("0");
 
-
-                //if day object not null add to the days list
-                days.Add(day);
+                //if information for the date was found add to the days list
+                if (day.date != null)
+                {
+                    days.Add(day);
+                }
             }
         }
 
@@ -60,8 +67,34 @@ namespace XMLWeather
             reader.ReadToFollowing("city");
             days[0].location = reader.GetAttribute("name");
 
+            reader.ReadToFollowing("country");
+            days[0].country = reader.ReadElementContentAsString();
+
+            reader.ReadToFollowing("sun");
+            days[0].sunrise = reader.GetAttribute("rise").Remove(0,11);
+            days[0].sunset = reader.GetAttribute("set").Remove(0, 11);
+            days[0].sunrise = days[0].sunrise.Remove(5, 3);
+            days[0].sunset = days[0].sunset.Remove(5, 3);
+
             reader.ReadToFollowing("temperature");
-            days[0].currentTemp = reader.GetAttribute("value");
+            //get temp and round
+            days[0].currentTemp = Convert.ToDouble(reader.GetAttribute("value")).ToString("0");
+
+            reader.ReadToFollowing("feels_like");
+            days[0].feelsLikeTemp = Convert.ToDouble(reader.GetAttribute("value")).ToString("0");
+
+            reader.ReadToFollowing("speed");
+            days[0].windSpeed = reader.GetAttribute("value");
+
+            reader.ReadToFollowing("direction");
+            days[0].windDirection = reader.GetAttribute("code");
+
+            reader.ReadToFollowing("visibility");
+            days[0].visibility = reader.GetAttribute("value");
+
+            //find weather condition and att to appropriate item in days list
+            reader.ReadToFollowing("weather");
+            days[0].condition = reader.GetAttribute("number");
         }
 
 
