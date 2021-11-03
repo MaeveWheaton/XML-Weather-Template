@@ -63,10 +63,30 @@ namespace XMLWeather.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        internal static System.Drawing.Icon error {
+            get {
+                object obj = ResourceManager.GetObject("error", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon lightcloud_rain {
             get {
                 object obj = ResourceManager.GetObject("lightcloud_rain", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nightbg3 {
+            get {
+                object obj = ResourceManager.GetObject("nightbg3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -157,6 +177,16 @@ namespace XMLWeather.Properties {
             get {
                 object obj = ResourceManager.GetObject("sun_littlecloud_flash_rain", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sunbg3 {
+            get {
+                object obj = ResourceManager.GetObject("sunbg3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

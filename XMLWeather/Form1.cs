@@ -41,6 +41,10 @@ namespace XMLWeather
                 reader.ReadToFollowing("time");
                 day.date = reader.GetAttribute("day");
 
+                //get weather symbol number
+                reader.ReadToFollowing("symbol");
+                day.symbol = reader.GetAttribute("number");
+
                 //get precipitation probability
                 reader.ReadToFollowing("precipitation");
                 day.precipitation = reader.GetAttribute("probability");
@@ -84,7 +88,7 @@ namespace XMLWeather
             days[0].feelsLikeTemp = Convert.ToDouble(reader.GetAttribute("value")).ToString("0");
 
             reader.ReadToFollowing("speed");
-            days[0].windSpeed = reader.GetAttribute("value");
+            days[0].windSpeed = (Convert.ToDouble(reader.GetAttribute("value")) * 3.6).ToString("0");
 
             reader.ReadToFollowing("direction");
             days[0].windDirection = reader.GetAttribute("code");
