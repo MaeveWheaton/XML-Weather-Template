@@ -62,7 +62,7 @@ namespace XMLWeather
                 }
             }
 
-            if (DateTime.Now.Hour > 19)
+            if (DateTime.Now.Hour > 19 || DateTime.Now.Hour < 6)
             {
                 this.BackgroundImage = Properties.Resources.nightbg3;
             }

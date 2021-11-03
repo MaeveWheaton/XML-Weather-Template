@@ -8,11 +8,11 @@ namespace XMLWeather
     public class Day
     {
         public string date, currentTemp, feelsLikeTemp, condition, location, country, tempHigh, tempLow, 
-            windSpeed, windDirection, precipitation, visibility, sunrise, sunset, symbol;
+            windSpeed, windDirection, visibility, sunrise, sunset, symbol, precipProb, precipType, precipAmount, humidity;
         public Day()
         {
             date = currentTemp = feelsLikeTemp = condition = location = country = tempHigh = tempLow
-                = windSpeed = windDirection = precipitation = visibility = sunrise = sunset = symbol = "";
+                = windSpeed = windDirection = visibility = sunrise = sunset = symbol = precipProb = precipType = precipAmount = humidity = "";
         }
     }
 }
