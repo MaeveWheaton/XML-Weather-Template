@@ -121,8 +121,25 @@ namespace XMLWeather
             //get weather condition
             reader.ReadToFollowing("weather");
             days[0].condition = reader.GetAttribute("value");
+
+            //get last updated
+            reader.ReadToFollowing("lastupdate");
+            days[0].lastUpdated = reader.GetAttribute("value");
         }
 
-
+        /// <summary>
+        /// Changes background day/night
+        /// </summary>
+        public static void ChooseBGImage(UserControl control)
+        {
+            if (DateTime.Now.Hour > 19 || DateTime.Now.Hour < 6)
+            {
+                control.BackgroundImage = Properties.Resources.nightbg3;
+            }
+            else
+            {
+                control.BackgroundImage = Properties.Resources.sunbg3;
+            }
+        }
     }
 }

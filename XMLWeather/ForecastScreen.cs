@@ -11,69 +11,90 @@ namespace XMLWeather
 {
     public partial class ForecastScreen : UserControl
     {
-        
+        //create list of picture boxes to fill later
+        List<PictureBox> iconBoxes = new List<PictureBox>();
+
         public ForecastScreen()
         {
             InitializeComponent();
             displayForecast();
         }
 
+        /// <summary>
+        /// Outputs min, max, and symbol for each date, sets bg
+        /// </summary>
         public void displayForecast()
         {
-            List<PictureBox> iconBoxes = new List<PictureBox>() { date1Icon, date2Icon, date3Icon, date4Icon, date5Icon, date6Icon };
+            //add picture boxes to list
+            iconBoxes = new List<PictureBox>() { date1Icon, date2Icon, date3Icon, date4Icon, date5Icon, date6Icon };
 
-            date.Text = "";
-            maxOutput.Text = "";
-            minOutput.Text = "";
-            for (int i = 1; i < Form1.days.Count; i++)
+            //clear labels
+            date.Text = maxOutput.Text = minOutput.Text = 
+                nextDayDateOutput.Text = nextDayMaxOutput.Text = nextDayMinOutput.Text = "";
+
+            //set next day data
+            nextDayDateOutput.Text = DateTime.Now.AddDays(1).ToString("dddd");
+            nextDayMaxOutput.Text = Form1.days[1].tempHigh;
+            nextDayMinOutput.Text = Form1.days[1].tempLow;
+            SetIcon(Convert.ToInt32(Form1.days[1].symbol), 1, 48);
+
+            //output min, max, and symbol for each date after
+            for (int i = 2; i < Form1.days.Count; i++)
             {
+                //output min and max for each date
                 date.Text += DateTime.Now.AddDays(i).ToString("dddd") + "\n\n\n";
                 maxOutput.Text += Form1.days[i].tempHigh + "\n\n\n";
                 minOutput.Text += Form1.days[i].tempLow + "\n\n\n";
 
+                //set symbol according to weather symbol value
                 int symbol = Convert.ToInt32(Form1.days[i].symbol);
-                if (symbol > 800)
-                {
-                    iconBoxes[i-1].BackgroundImage = new Icon(Properties.Resources.sun_lightcloud, new Size(32, 32)).ToBitmap();
-                }
-                else if (symbol == 800)
-                {
-                    iconBoxes[i-1].BackgroundImage = new Icon(Properties.Resources.sun, new Size(32, 32)).ToBitmap();
-                }
-                else if(symbol > 600)
-                {
-                    iconBoxes[i-1].BackgroundImage = new Icon(Properties.Resources.sun_lightcloud_snow, new Size(32, 32)).ToBitmap();
-                }
-                else if (symbol > 500)
-                {
-                    iconBoxes[i-1].BackgroundImage = new Icon(Properties.Resources.sun_lightcloud_grain, new Size(32, 32)).ToBitmap();
-                }
-                else if (symbol > 300)
-                {
-                    iconBoxes[i-1].BackgroundImage = new Icon(Properties.Resources.sun_lightcloud_rain, new Size(32, 32)).ToBitmap();
-                }
-                else if (symbol > 200)
-                {
-                    iconBoxes[i-1].BackgroundImage = new Icon(Properties.Resources.sun_littlecloud_flash_rain, new Size(32, 32)).ToBitmap();
-                }
-                else
-                {
-                    iconBoxes[i-1].BackgroundImage = new Icon(Properties.Resources.error, new Size(32, 32)).ToBitmap();
-                }
+                SetIcon(symbol, i, 32);
             }
 
-            if (DateTime.Now.Hour > 19 || DateTime.Now.Hour < 6)
+            //change bg day/night, night from 8pm-6am
+            Form1.ChooseBGImage(this);
+        }
+
+        /// <summary>
+        /// Sets icon according to symbol value
+        /// </summary>
+        /// <param name="symbol">value</param>
+        /// <param name="i">list index</param>
+        public void SetIcon(int symbol, int i, int size)
+        {
+            if (symbol > 800)
             {
-                this.BackgroundImage = Properties.Resources.nightbg3;
+                iconBoxes[i - 1].BackgroundImage = new Icon(Properties.Resources.sun_lightcloud, new Size(size, size)).ToBitmap();
+            }
+            else if (symbol == 800)
+            {
+                iconBoxes[i - 1].BackgroundImage = new Icon(Properties.Resources.sun, new Size(size, size)).ToBitmap();
+            }
+            else if (symbol > 600)
+            {
+                iconBoxes[i - 1].BackgroundImage = new Icon(Properties.Resources.sun_lightcloud_snow, new Size(size, size)).ToBitmap();
+            }
+            else if (symbol > 500)
+            {
+                iconBoxes[i - 1].BackgroundImage = new Icon(Properties.Resources.sun_lightcloud_grain, new Size(size, size)).ToBitmap();
+            }
+            else if (symbol > 300)
+            {
+                iconBoxes[i - 1].BackgroundImage = new Icon(Properties.Resources.sun_lightcloud_rain, new Size(size, size)).ToBitmap();
+            }
+            else if (symbol > 200)
+            {
+                iconBoxes[i - 1].BackgroundImage = new Icon(Properties.Resources.sun_littlecloud_flash_rain, new Size(size, size)).ToBitmap();
             }
             else
             {
-                this.BackgroundImage = Properties.Resources.sunbg3;
+                iconBoxes[i - 1].BackgroundImage = new Icon(Properties.Resources.error, new Size(size, size)).ToBitmap();
             }
         }
 
         private void todayLabel_Click(object sender, EventArgs e)
         {
+            //switch to current screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
@@ -83,6 +104,7 @@ namespace XMLWeather
 
         private void searchLabel_Click(object sender, EventArgs e)
         {
+            //switch to search screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 

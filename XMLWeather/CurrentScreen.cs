@@ -12,29 +12,45 @@ namespace XMLWeather
 {
     public partial class CurrentScreen : UserControl
     {
+        // Creates a TextInfo based on the "en-US" culture.
+        TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+
         public CurrentScreen()
         {
             InitializeComponent();
             DisplayCurrent();
         }
 
+        /// <summary>
+        /// Displays outputs and bg
+        /// </summary>
         public void DisplayCurrent()
+        {
+            //set text outputs
+            SetTextOutputs();
+            
+            //change bg day/night, night from 8pm-6am
+            Form1.ChooseBGImage(this);
+        }
+
+        /// <summary>
+        /// Sets all text outputs
+        /// </summary>
+        public void SetTextOutputs()
         {
             //display important details
             dateOutput.Text = DateTime.Now.ToString("dddd, MMMM dd");
-            cityOutput.Text = Form1.days[0].location + ", "+ Form1.days[0].country;
+            cityOutput.Text = Form1.days[0].location + ", " + Form1.days[0].country;
             currentTempOutput.Text = Form1.days[0].currentTemp + "°C";
             lowOutput.Text = Form1.days[0].tempLow + "°C";
             highOutput.Text = Form1.days[0].tempHigh + "°C";
 
-            // Creates a TextInfo based on the "en-US" culture.
-            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
-            //Format condition to have uppercases and display
+            //format condition to have uppercases and display
             conditionOutput.Text = myTI.ToTitleCase(Form1.days[0].condition);
 
             //display extra intfo
-            sunriseOutput.Text = Form1.days[0].sunrise + " am";
-            sunsetOutput.Text = Form1.days[0].sunset + " pm";
+            sunriseOutput.Text = Form1.days[0].sunrise; //times are wrong, need to be converted to timezone
+            sunsetOutput.Text = Form1.days[0].sunset;
             humidityOutput.Text = Form1.days[0].humidity + " %";
             feelsLikeTempOutput.Text = Form1.days[0].feelsLikeTemp + "°C";
             windOutput.Text = Form1.days[0].windDirection + " " + Form1.days[0].windSpeed + " km/hr";
@@ -43,14 +59,14 @@ namespace XMLWeather
             //if type not null, display type of precip, else just precip
             if (Form1.days[0].precipType != null)
             {
-                chanceOfLabel.Text = "Chance of " + Form1.days[0].precipType;
+                chanceOfLabel.Text = "Chance of " + myTI.ToTitleCase(Form1.days[0].precipType);
             }
             else
             {
                 chanceOfLabel.Text = "Chance of Precipitation";
             }
             //display percent chance
-            chanceOutput.Text = (Convert.ToDouble(Form1.days[0].precipProb) * 100).ToString() + " %";            
+            chanceOutput.Text = (Convert.ToDouble(Form1.days[0].precipProb) * 100).ToString() + " %";
 
             //display precip amount if any, else 0
             if (Form1.days[0].precipAmount != null)
@@ -62,19 +78,13 @@ namespace XMLWeather
                 precipitationOutput.Text = "0 cm";
             }
 
-            //change bg day/night, night from 8pm-6am
-            if (DateTime.Now.Hour > 19 || DateTime.Now.Hour < 6)
-            {
-                this.BackgroundImage = Properties.Resources.nightbg3;
-            }
-            else
-            {
-                this.BackgroundImage = Properties.Resources.sunbg3;
-            }
+            //set last updated 
+            lastUpdatedOutput.Text = Form1.days[0].lastUpdated.Remove(10, 9) + "  " + Form1.days[0].lastUpdated.Remove(1, 11).Remove(5, 3);
         }
 
         private void forecastLabel_Click(object sender, EventArgs e)
         {
+            //switch to forecast screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
@@ -84,6 +94,7 @@ namespace XMLWeather
 
         private void searchLabel_Click(object sender, EventArgs e)
         {
+            //switch to search screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 

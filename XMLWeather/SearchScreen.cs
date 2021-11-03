@@ -32,14 +32,7 @@ namespace XMLWeather
             searchPictureBox.BackgroundImage = new Icon(Properties.Resources.search1, new Size(32, 32)).ToBitmap();
 
             //change bg day/night, night from 8pm-6am
-            if (DateTime.Now.Hour > 19 || DateTime.Now.Hour < 6)
-            {
-                this.BackgroundImage = Properties.Resources.nightbg3;
-            }
-            else
-            {
-                this.BackgroundImage = Properties.Resources.sunbg3;
-            }
+            Form1.ChooseBGImage(this);
         }
 
         private void todayLabel_Click(object sender, EventArgs e)
@@ -124,7 +117,7 @@ namespace XMLWeather
         /// </summary>
         public void ToCurrentScreen()
         {
-            //change to CurrentScreen
+            //change to current screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
