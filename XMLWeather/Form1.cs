@@ -2,9 +2,13 @@
  * Maeve Wheaton
  * Mr. T
  * November 3, 2021
- * Weather app, defaults to current weather data in Stratford, CA. Clicking 7 Day brings up a forcast for the next 6 days with icons.
- * Clicking Search brings up a page where the user can search for a different city, when chosen it goes back to the current data using weather data for the new city.
- * On either of the other pages, Today can be clicked to return to the current data page.
+ * Weather app, defaults to current weather data in Stratford, CA. 
+ * Clicking 6 Day brings up a forcast for the next 6 days with icons.
+ * Clicking Search brings up a screen where the user can search for a different city or click a suggested city, 
+ * when chosen it goes back to the current data using weather data for the new city.
+ * On either of the other screens, Today can be clicked to return to the current data screen.
+ * The background of the screens changes day/night. 
+ * *Note: I know this was supposed to be by weather but I couldn't find images I liked that matched for each forcast so I went with day/night*
 */
 
 using System;
