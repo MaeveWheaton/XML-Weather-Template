@@ -43,6 +43,7 @@ namespace XMLWeather
 
         public static void ExtractForecast()
         {
+            //get forcast info
             XmlReader reader = XmlReader.Create("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + location + "&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0");
 
             while (reader.Read())
@@ -51,6 +52,7 @@ namespace XMLWeather
                 Day day = new Day();
 
                 //fill day object with required data
+                //get time and day values
                 reader.ReadToFollowing("time");
                 day.date = reader.GetAttribute("day");
 
@@ -79,7 +81,7 @@ namespace XMLWeather
 
         public static void ExtractCurrent()
         {
-            // current info is not included in forecast file so we need to use this file to get it
+            //get current info not included in forecast file
             XmlReader reader = XmlReader.Create("http://api.openweathermap.org/data/2.5/weather?q=" + location + "&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0");
 
             //get city and country and add to appropriate item in days list
@@ -132,6 +134,7 @@ namespace XMLWeather
         /// </summary>
         public static void ChooseBGImage(UserControl control)
         {
+            //change bg image, night from 7pm to 6am
             if (DateTime.Now.Hour > 19 || DateTime.Now.Hour < 6)
             {
                 control.BackgroundImage = Properties.Resources.nightbg3;

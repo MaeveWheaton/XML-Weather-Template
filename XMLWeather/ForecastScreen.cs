@@ -111,5 +111,16 @@ namespace XMLWeather
             SearchScreen cs = new SearchScreen();
             f.Controls.Add(cs);
         }
+
+        private void ForecastScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //press escape to exit
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
+            }
+        }
     }
 }

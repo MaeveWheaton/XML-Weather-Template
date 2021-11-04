@@ -150,5 +150,16 @@ namespace XMLWeather
                 timerCounter = 0;
             }
         }
+
+        private void CurrentScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //press escape to exit
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
+            }
+        }
     }
 }

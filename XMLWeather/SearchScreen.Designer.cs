@@ -166,6 +166,7 @@ namespace XMLWeather
             this.Controls.Add(this.todayLabel);
             this.Name = "SearchScreen";
             this.Size = new System.Drawing.Size(762, 1072);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.SearchScreen_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.searchPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -262,6 +262,7 @@
             this.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.Name = "ForecastScreen";
             this.Size = new System.Drawing.Size(762, 1072);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.ForecastScreen_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.date6Icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.date5Icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.date4Icon)).EndInit();

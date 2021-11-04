@@ -85,22 +85,6 @@ namespace XMLWeather
             locationInput.Text = "";
         }
 
-        /* Didn't work when I tried it
-        /// <summary>
-        /// Search location when enter key is pressed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SearchScreen_KeyUp(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Enter:
-                    SearchLocation();
-                    break;
-            }
-        }*/
-
         /// <summary>
         /// Clears days list data, extracts data for new location
         /// </summary>
@@ -146,6 +130,20 @@ namespace XMLWeather
             catch
             {
                 errorLabel.Text = "Error: Location not found";
+            }
+        }
+
+        private void SearchScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //search when enter press, escape to exit
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    SearchLocation();
+                    break;
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
             }
         }
     }

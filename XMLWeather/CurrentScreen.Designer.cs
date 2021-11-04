@@ -445,6 +445,7 @@
             this.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.Name = "CurrentScreen";
             this.Size = new System.Drawing.Size(762, 1072);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.CurrentScreen_PreviewKeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
