@@ -123,6 +123,8 @@ namespace XMLWeather
 
             ForecastScreen fs = new ForecastScreen();
             f.Controls.Add(fs);
+
+            fs.Focus();
         }
 
         private void searchLabel_Click(object sender, EventArgs e)
@@ -131,8 +133,10 @@ namespace XMLWeather
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
-            SearchScreen cs = new SearchScreen();
-            f.Controls.Add(cs);
+            SearchScreen ss = new SearchScreen();
+            f.Controls.Add(ss);
+
+            ss.Focus();
         }
 
         private void refreshTimer_Tick(object sender, EventArgs e)
