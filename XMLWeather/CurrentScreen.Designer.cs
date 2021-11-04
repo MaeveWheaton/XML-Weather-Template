@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.highOutput = new System.Windows.Forms.Label();
             this.hlLabel = new System.Windows.Forms.Label();
             this.feelsLikeTempLabel = new System.Windows.Forms.Label();
@@ -56,6 +57,7 @@
             this.humidityOutput = new System.Windows.Forms.Label();
             this.lastUpdatedLabel = new System.Windows.Forms.Label();
             this.lastUpdatedOutput = new System.Windows.Forms.Label();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // highOutput
@@ -383,7 +385,7 @@
             // 
             this.lastUpdatedLabel.BackColor = System.Drawing.Color.Transparent;
             this.lastUpdatedLabel.ForeColor = System.Drawing.Color.White;
-            this.lastUpdatedLabel.Location = new System.Drawing.Point(82, 836);
+            this.lastUpdatedLabel.Location = new System.Drawing.Point(69, 836);
             this.lastUpdatedLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lastUpdatedLabel.Name = "lastUpdatedLabel";
             this.lastUpdatedLabel.Size = new System.Drawing.Size(319, 32);
@@ -402,6 +404,10 @@
             this.lastUpdatedOutput.TabIndex = 64;
             this.lastUpdatedOutput.Text = "LastUpdatedDate/Time";
             this.lastUpdatedOutput.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // refreshTimer
+            // 
+            this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
             // CurrentScreen
             // 
@@ -473,5 +479,6 @@
         private System.Windows.Forms.Label humidityOutput;
         private System.Windows.Forms.Label lastUpdatedLabel;
         private System.Windows.Forms.Label lastUpdatedOutput;
+        private System.Windows.Forms.Timer refreshTimer;
     }
 }
